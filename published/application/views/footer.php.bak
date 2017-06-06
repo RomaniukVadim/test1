@@ -1,0 +1,233 @@
+</body> 
+	
+    <!-- COMMOM MODAL -->
+    <div class="modal fade" id="CommonModal"  role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" >
+        
+        <div class="modal-dialog"  >
+          
+          <div class="modal-content"  >
+            
+            <div class="modal-header panel-heading" >
+              <!--<button type="button" class="close sugbtn" data-dismiss="modal" aria-hidden="true">&times;</button>-->
+              <h4 class="modal-title"  ></h4>
+            </div>
+                        
+            <!-- tab content -->
+            <div style="padding: 20px 20px 20px 20px; " class="ajax_content center" > 
+              	
+            </div>
+            <!-- end content -->
+             
+            <div class="modal-footer center" >  
+              <button type="button" class="btn btn-danger" id="BtnCancelExport"  >Cancel</button>
+            </div>
+            
+          </div><!-- /.modal-content -->
+        
+        </div><!-- /.modal-dialog --> 
+         
+    </div>  
+    <!-- END COMMON --> 
+    
+ 
+    <!-- ACTIVITY TAB FORM --> 
+    <style>
+        .suggestions_input {
+            width: 100% !important; 	
+        }
+    </style>
+    <div class="modal fade" id="ActivityModal"  role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" >
+    	
+        <div class="modal-dialog"  >
+          
+          <div class="modal-content"  >
+            
+            <div class="modal-header" >
+              <button type="button" class="close sugbtn" data-dismiss="modal" aria-hidden="true">&times;</button>
+              <h4 class="modal-title"  ><i class="icon20 i-file-8"></i>Manage Activity</h4>
+            </div>
+            
+            <!-- tab and content -->
+            <div style="padding: 20px 20px 20px 20px; " id="TabContainer" >
+                
+                <ul id="myTab" class="nav nav-tabs">
+                    <li ><a href="<?=base_url()?>banks/popupManageActivity" data-target="#bank_form" marker="bank_form" data-toggle="tabajax" ><i class="icon14 i-office"></i> Bank</a></li>
+                    <li><a href="<?=base_url()?>promotions/popupManageActivity" data-target="#promotions_form" marker="promotions_form" data-toggle="tabajax"><i class="icon14 i-star-2"></i> Promotions</a></li>  
+                    <li><a href="<?=base_url()?>casino/popupManageActivity" data-target="#casino_form" marker="casino_form" data-toggle="tabajax"><i class="icon14 i-dice"></i> Casino</a></li> 
+                    <li><a href="<?=base_url()?>accounts/popupManageActivity" data-target="#account_form" marker="account_form" data-toggle="tabajax"><i class="icon14 i-vcard"></i> Account</a></li>
+                    <li><a href="<?=base_url()?>suggestions/popupManageActivity" data-target="#suggestion_form" marker="suggestions_form" data-toggle="tabajax"><i class="icon14 i-pencil-5"></i> Suggestions</a></li> 
+                    <li><a href="<?=base_url()?>access/popupManageActivity" data-target="#access_form" marker="access_form" data-toggle="tabajax"><i class="icon14 i-key-2"></i> Access</a></li>
+                    <!--<li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Dropdown <b class="caret"></b></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="#dropdown" data-toggle="tab">@fat</a></li>
+                            <li><a href="#dropdown" data-toggle="tab">@mdo</a></li>
+                         </ul>
+                    </li>-->
+                </ul>
+                
+                <div class="tab-content" >
+                	<div class="tab-pane" id="bank_form"></div>
+                    <div class="tab-pane" id="promotions_form"></div>
+                    <div class="tab-pane" id="casino_form"></div>
+                    <div class="tab-pane" id="account_form"></div>
+                    <div class="tab-pane" id="suggestions_form"></div>
+                    <div class="tab-pane" id="access_form"></div>
+                </div>
+			
+            </div>
+            <!-- end tab and content -->
+            
+            <?php /*?><div class="modal-footer" > 
+              <div id="SuggestionFormLoader" style="float: left; " ></div>
+              <button type="submit" class="btn btn-primary sugbtn" id="BtnSubmitSuggestion" >Submit</button>	
+              <button type="button" class="btn btn-default sugbtn" id="BtnCloseSuggestion" data-dismiss="modal" >Close</button>
+            </div><?php */?>
+            
+          </div><!-- /.modal-content -->
+        
+        </div><!-- /.modal-dialog --> 
+        
+    </div>
+    <script>   
+	$(function(){    
+		$.fn.modal.Constructor.prototype.enforceFocus = function () {
+		 /* var that = this;
+		  $(document).on('focusin.modal', function (e) {
+			  if ($(e.target).hasClass('select2-input')) {
+				return true;
+			  }
+	
+			  if (that.$element[0] !== e.target && !that.$element.has(e.target).length) {
+				that.$element.focus();
+			  }
+		   });*/
+		};  
+		
+		$('[data-toggle="tabajax"]').click(function(e) { 
+			
+			if ($(this).hasClass('disabled')) {
+				return false;
+			}
+			 
+			tabContent($(this), $(this).attr('href'), $(this).attr('marker'));
+			return false;  
+		});
+		  
+		//Boostrap modal
+		$('#ActivityModal').modal({ 
+			show: false, 
+			keyboard: false
+		});
+		
+		
+		$('#CommonModal').on('hide.bs.modal', function (e) {     
+			  $(".select2-drop, .select2-drop-mask").hide();  
+			  //if(is_change == 1)$(".btn_search").trigger('click'); 
+			  //is_change = 0; //global 
+			  
+		}); 
+		
+		$("#BtnCancelExport").click(function(){
+			 xhr.abort(); 	  
+			 $('#CommonModal').modal('hide')	
+			 exportLoading("hide");
+		}); 
+		
+		
+		//form modal close
+		<?php /*?>$('#ActivityModal').on('hide.bs.modal', function (e) {     
+			  $(".select2-drop, .select2-drop-mask").hide();  
+			  $(".btn_search").trigger('click');
+			 	 //$(this).removeData('bs.modal');   
+		}); <?php */?>
+		
+  
+	  
+	});
+	</script>
+
+<<<<<<< .mine
+<?php if($this->session->userdata('mb_no')): ?>
+=======
+<?php if(is_login()): ?>
+>>>>>>> .r65
+
+<script id="ws-loader" type="text/javascript" src="http://10.120.10.92/ws/loader.js?module=notifs"></script>
+<script type="text/javascript">  
+var base_url = '<?=base_url()?>';
+var user_type = '<?=$this->session->userdata('mb_usertype')?>';
+var user_nick = '<?=$this->session->userdata('mb_nick')?>';
+var user_id = <?=($this->session->userdata('mb_no') ? $this->session->userdata('mb_no') : 0)?>; 
+var chat_groups = [];  
+
+function createCustomChatGroup(){ 
+	$.ajax({ 
+		data: $("#search_form").serialize(),
+		type:"POST",  
+		dataType: "JSON",
+		url: "<?=base_url();?>chat_groups/createCustomChatGroup",  
+		beforeSend:function(){   
+			//show loading 
+		},
+		success:function(newdata){   
+			  
+			 $.each(newdata, function (i, val) {   
+				//if($.inArray(user_type, val.users) != -1)  
+				val.icon = (val.icon)?val.icon:"group"; 
+				initChat_UserGroup(val.title, val.icon); 
+			 });
+		}
+			
+	}); //end ajax
+}
+	
+	 
+	/*var chat_groups = [
+			{
+				title: 'CRM GROUP',
+				icon: 'comments',
+				users: [
+						'admin',
+						'supervisor',
+						'crm'
+					]
+			}
+		];*/
+		
+	var currency_groups = [
+			{
+				title: 'ENG',
+				icon: 'money',
+				currencies: [
+						'AUD',
+						'GBP',
+						'EURO',
+						'MYR',
+						'USD'
+					]
+			}
+		];
+<?php
+
+	$currs = array();
+	
+	$res = $this->_currency->getAbbreviation(explode(',', $this->session->userdata('mb_currencies')));
+	
+	foreach($res as $c)
+		$currs[] = $c->Abbreviation;
+
+?>
+	var user_currencies = new Array(<?=implode(',', array_map(function ($c) { return "'$c'"; }, $currs))?>);  
+</script>
+<script type="text/javascript" src="<?=base_url()?>media/js/chat/chat.js"></script>
+<script>   
+$(function(){
+	//createCustomChatGroup(); 
+}); 
+</script>
+
+
+<?php endif; ?>
+    
+</html>

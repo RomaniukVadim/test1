@@ -1,0 +1,197 @@
+#chatbox-container {
+	position: fixed;
+	bottom: 0px;
+	right: 65px;
+	cursor: pointer;
+	/*background: none; */
+	/*z-index: 8888888;  */
+	z-index: 888;  
+	background: #ffffff; 
+	padding-top: 5px;   
+	border: 1px solid red;
+}
+
+#chatbox-container .chatbox {
+	margin: 8px;
+	position: relative;
+}
+
+#chatbox-container .chatbox span {
+	font-family: arial,helvetica;
+	font-size: 12px;
+	position: absolute;
+	top: -10px;
+	left: 1px;
+}
+
+.connecting {
+	color: #ccc;
+}
+
+.chatbox-box {
+	height: 250px;
+	overflow: hidden;
+	position: relative;
+	margin: 10px 0px;
+}
+
+.chatbox-box .message {
+	-webkit-border-radius: 5px;
+	-moz-border-radius: 5px;
+	border-radius: 5px;
+	background-clip: padding-box;
+	position: relative;
+	padding: 10px;
+	margin-top: 9px;
+	margin-bottom: 6px;
+	background-color: #E5E5E5;
+	box-shadow: 0px 1px 0px 0px #FFF inset, 0px 1px 0px 0px #FFF;
+	text-shadow: none;
+}
+
+.chatbox-box .message.me {
+	margin-left: 9px;
+	margin-right: 40px;
+	background-color: #cff1fb;
+}
+
+.chatbox-box .message.notme {
+	margin-right: 25px;
+	margin-left: 40px;
+}
+
+.chatbox-box .message.me:after {
+	border-color: #fff;
+	border-left-color: #fff;
+	border-width: 8px;
+	top: 70%;
+	margin-top: -8px;
+}
+
+.chatbox-box .message.notme:after {
+	border-color: #fff;
+	border-right-color: #fff;
+	border-width: 8px;
+	top: 70%;
+	margin-top: -8px;
+}
+
+.chatbox-box .message.me:before {
+	top: 70%;
+	margin-top: -9px;
+	border-color: rgba(201, 201, 201, 0);
+	border-right-color: #cff1fb !important;
+	border-width: 9px !important;
+}
+
+.chatbox-box .message.notme:before {
+	top: 70%;
+	margin-top: -9px;
+	border-color: rgba(201, 201, 201, 0);
+	border-left-color: #E5E5E5 !important;
+	border-width: 9px !important;
+}
+
+.chatbox-box .message.me:after, .chatbox-box .message.me:before {
+	right: 100%;
+	content: " ";
+	height: 0px;
+	width: 0px;
+	position: absolute;
+	pointer-events: none;
+	border: medium solid transparent;
+}
+
+.chatbox-box .message.notme:after, .chatbox-box .message.notme:before {
+	left: 100%;
+	content: " ";
+	height: 0px;
+	width: 0px;
+	position: absolute;
+	pointer-events: none;
+	border: medium solid transparent;
+}
+
+.chatbox-box .username {
+	font-weight: bold;
+	font-size: small;
+	color: #4c8080;
+}
+
+/*.chatbox-box .username.me {
+	color: #66CCCC;
+}*/
+
+.chatbox-box .sent {
+	font-size: smaller;
+	color: #777777;
+	font-weight: lighter;
+}
+
+.chatbox-box .body {
+	color: #666;
+}
+
+.chatbox-input {
+	margin-bottom: 3px;
+}
+
+.chatbox-hover {
+	opacity: .8;
+}
+
+.chatbox-hover:hover {
+	opacity: 1;
+}
+
+.nick-list {
+	max-height:150px;
+	height:auto !important;
+	height:150px;
+	overflow: hidden;
+	position: relative;
+	margin: 5px 0px;
+}
+
+.nick-list .nick-name {
+	padding: 3px 25px 3px 5px;
+}
+
+.chatbox-box .prev, .date-heading {
+	text-align: center;
+	color: #a9a9a9;
+	font-size: smaller;
+	font-weight: lighter;
+}
+
+.maxlength {
+    text-align: right;
+    font-size: smaller;
+	font-weight: lighter;
+	color: #a9a9a9;
+}
+
+.chat-header {
+	margin-top: 2px;
+}
+
+.alert-counter {
+	background-color: #D9534F !important;
+	position: absolute;
+	left: -10px !important;
+	top: -10px !important;
+	font-size: 10.998px !important;
+}
+
+.qtip > * {
+	font-size: 90%;
+}
+
+.qtip.wide-tip {
+	max-width: 350px !important;
+	min-width: 350px !important;
+}
+
+/* .ps-scrollbar-y {
+	min-height: 20px !important;
+} */
